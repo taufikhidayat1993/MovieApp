@@ -18,7 +18,7 @@ export default (StyleMovies = StyleSheet.create({
   lineView: { height: 2, marginTop: 10, backgroundColor: "#EDEDED" },
   movieList: { marginLeft: 10, marginRight: 10, backgroundColor: "#02ADAD", elevation: 10 },
   image: { width: 120, height: 180, marginLeft: 5, marginRight: 20 },
-  rowView: { flexDirection: "row", marginTop: 10, color:"#000" },
+  rowView: { flexDirection: "row", marginTop: 10, color:"#000", justifyContent:"space-between" },
   movieCard: {
     marginLeft: 10,
     marginRight: 10,

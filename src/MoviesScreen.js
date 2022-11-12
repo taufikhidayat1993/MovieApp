@@ -33,7 +33,7 @@ export default class MoviesScreen extends Component {
       const { movies  } = this.state;
     return (
      
-       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+       <View style={{ flex: 1, alignItems: 'center', }}>
   
   {renderIf(
           movies.length,
@@ -44,8 +44,9 @@ export default class MoviesScreen extends Component {
         <TouchableOpacity
         onPress={() => this.props.navigation.navigate("Detail", { id: obj.id })}
         key={i}
-        style={{ margin: 10, marginBottom: 5 }}>
-        <View style={{ flexDirection: "row" }}>
+        style={{ marginBottom: 5 }}>
+        <View style={{ flexDirection: "row", flex:1 }}>
+        
           <Image
             style={StyleMovies.image}
             source={{
@@ -55,20 +56,24 @@ export default class MoviesScreen extends Component {
                   : Configs.URL.PLACEHOLDER_IMAGE
             }}
           />
+         
           <View style={{ flexDirection: "column" }}>
             <Text numberOfLines={3} style={{ fontSize: 17 }}>
               {obj.original_title}
             </Text>
             <View style={StyleMovies.rowView}>
-              <Text>Release Date</Text>
+              <Text >Release Date</Text>
+              <Text>:</Text>
               <Text>{obj.release_date}</Text>
             </View>
             <View style={StyleMovies.rowView}>
-              <Text>Language</Text>
+              <Text >Language</Text>
+              <Text>:</Text>
               <Text>{obj.original_language}</Text>
             </View>
             <View style={StyleMovies.rowView}>
               <Text>Popularity</Text>
+              <Text>:</Text>
               <Text>{obj.popularity} %</Text>
             </View>
           </View>

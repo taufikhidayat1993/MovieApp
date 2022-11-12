@@ -43,10 +43,10 @@ class DetailsScreen extends React.Component {
     <View style={{ backgroundColor: Configs.Colors.Grey }}>
       <StatusBar backgroundColor={Configs.Colors.Cyan} barStyle="light-content" />
       {this.state.isLoading ? <Loader show={true} loading={this.state.isLoading} /> : null}
-      <ScrollView style={StyleMovies.movieCard} showsVerticalScrollIndicator={false}>
+      <ScrollView style={[StyleMovies.movieCard,{backgroundColor:'#02ADAD'}]} showsVerticalScrollIndicator={false}>
         <View style={{ alignItems: "center" }}>
           <Image
-            style={StyleMovies.image}
+            style={StyleMovies.image_detail}
             source={{
               uri:
                 this.state.detail.poster_path != null

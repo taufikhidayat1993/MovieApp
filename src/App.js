@@ -1,38 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text,Button, View } from 'react-native';
+import { StyleSheet, Text,Button, View, TouchableOpacity  } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
+import { Provider } from 'react-redux';
+import { IndexReducer } from './redux/index'
+import { createStore } from 'redux';
+import store from "./store"
 import MoviesScreen from './MoviesScreen'
 import DetailsScreen from './DetailsScreen'
-function HomeScreen({ navigation }) {
-  return (
-    <MoviesScreen/>
-  );
-}
+import ListMovieReduxScreen from './ListMovieRedux'
+
 
 // Screen Detail
-function Detail({ route, navigation }) {
-  return (
-    <DetailsScreen/>
-  );
-}
+
 
 // Screen Profile
-function ProfilesScreen({ route, navigation }) {
+function HomeScreen({ route, navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Profile Screen</Text>
-      <Button
-        color="black"
-        title="Go to Home"
-        onPress={() => navigation.navigate('Home')}
-      />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-      <Button
-        color="green"
-        title="Go back to first screen in stack"
-        onPress={() => navigation.popToTop()}
-      />
+     
+
+    <TouchableOpacity  onPress={() => navigation.navigate('Movie')} style={styles.appButtonContainer}>
+      <Text style={styles.appButtonText}>List Movie API</Text>
+    </TouchableOpacity>
+    
+    <TouchableOpacity  onPress={() => navigation.navigate('ListMovieRedux')} style={styles.appButtonContainer}>
+     <Text style={styles.appButtonText}>List Movie Redux</Text>
+    </TouchableOpacity>
+     
     </View>
   );
 }
@@ -41,15 +37,37 @@ function ProfilesScreen({ route, navigation }) {
 const Stack = createStackNavigator();
 
 function App() {
+ 
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={MoviesScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Movie" component={MoviesScreen} />
         <Stack.Screen name="Detail" component={DetailsScreen} />
+        <Stack.Screen name="ListMovieRedux" component={ListMovieReduxScreen} />
         {/* <Stack.Screen name="Profiles" component={ProfilesScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
-
+const styles = StyleSheet.create({
+  // ...
+  appButtonContainer: {
+    elevation: 8,
+    backgroundColor: "#009688",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    marginBottom:20
+  },
+  appButtonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase"
+  }
+});
 export default App;
